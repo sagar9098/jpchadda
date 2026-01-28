@@ -22,10 +22,6 @@ const redis = new Redis(process.env.REDIS_URL);
 redis.on("connect", () => console.log("✅ Redis connected"));
 redis.on("error", (e) => console.error("❌ Redis error", e));
 
-// 🔥 Health check (IMPORTANT for Render)
-app.get("/", (req, res) => {
-  res.send("OK");
-});
 
 // 📍 Save location
 app.post("/save-location", async (req, res) => {
