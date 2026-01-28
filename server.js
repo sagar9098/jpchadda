@@ -2,10 +2,19 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import Redis from "ioredis";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+// 🔧 Needed for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 🔥 Serve static files
+app.use(express.static(path.join(__dirname, "public")));
 
 // ✅ Redis (external, OK for free tier)
 const redis = new Redis(process.env.REDIS_URL);
