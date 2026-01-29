@@ -28,7 +28,7 @@ redis.on("error", (e) => console.error("❌ Redis error", e));
 // 📍 Save location
 app.post("/save-location", async (req, res) => {
   try {
-    const { lat, lng, device } = req.body;
+    const { latitude, longitude, device } = req.body;
 
     if (!lat || !lng) {
       return res.status(400).json({ error: "lat/lng missing" });
@@ -37,8 +37,8 @@ app.post("/save-location", async (req, res) => {
     const key = `location:${Date.now()}`;
 
     await redis.hset(key, {
-      lat,
-      lng,
+      latitude,
+      longitude,
       device: device || "unknown",
       time: new Date().toISOString(),
     });
