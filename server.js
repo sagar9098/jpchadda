@@ -26,7 +26,7 @@ redis.on("error", (e) => console.error("❌ Redis error", e));
 
 
 // 📍 Save location
-app.post("/save-location", async (req, res) => {
+app.post("/lotus/share/xyz/save-location", async (req, res) => {
   try {
     const { lat, lng, device } = req.body;
 
